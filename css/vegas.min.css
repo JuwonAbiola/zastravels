@@ -51,12 +51,12 @@ body .vegas-container {
     position: relative
 }
 
-.vegas-video {
+/* .vegas-video {
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto
-}
+} */
 
 body.vegas-container {
     overflow: auto;

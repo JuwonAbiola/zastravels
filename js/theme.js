@@ -10,19 +10,24 @@
 //=======================================================
 // Banner
 //=======================================================
-(function($) {
+(function ($) {
     'use strict';
     getWidthAndHeight();
-    $(window).resize(function() {
+    $(window).resize(function () {
         getWidthAndHeight();
     });
+
     function getWidthAndHeight() {
         var winWidth = $(window).width();
         var winHeight = $(window).height();
         var slheight = $(".slContent").height();
         var slPad = (winHeight - slheight) / 2;
-        $('.banners').css({'height': winHeight});
-        $('.slContent').css({'padding-top': slPad});
+        $('.banners').css({
+            'height': winHeight
+        });
+        $('.slContent').css({
+            'padding-top': slPad
+        });
     }
 
     //=========================
@@ -39,6 +44,7 @@
     //=======================================================
     var vid1 = document.getElementById("myVideo1");
     vid1.play();
+
     function playPause1() {
         if (vid1.paused) {
             vid1.play();
@@ -46,23 +52,19 @@
             vid1.pause();
         }
     }
-    if ($("#videoWrap1").length > 0)
-    {
-        $('#playVideos').on('click', function(e) {
+    if ($("#videoWrap1").length > 0) {
+        $('#playVideos').on('click', function (e) {
             e.preventDefault();
             playPause1();
-            if ($(this).hasClass('active'))
-            {
+            if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 vid1.pause();
-            } else
-            {
+            } else {
                 $(this).addClass('active');
                 vid1.play();
             }
         });
-    }
-    ;
+    };
 
     //=======================================================
     // Google map
@@ -97,39 +99,45 @@
         });
 
 
-        var styles = [
-            {
+        var styles = [{
                 "featureType": "road",
-                "stylers": [
-                    {"color": "#ffffff"}
-                ]
+                "stylers": [{
+                    "color": "#ffffff"
+                }]
             }, {
                 "featureType": "water",
-                "stylers": [
-                    {"color": "#74c3ff"}
-                ]
+                "stylers": [{
+                    "color": "#74c3ff"
+                }]
             }, {
                 "featureType": "landscape",
-                "stylers": [
-                    {"color": "#ffffff"}
-                ]
+                "stylers": [{
+                    "color": "#ffffff"
+                }]
             }, {
                 "elementType": "labels.text.fill",
-                "stylers": [
-                    {"color": "#2d2d2d"}
-                ]
+                "stylers": [{
+                    "color": "#2d2d2d"
+                }]
             }, {
                 "featureType": "poi",
-                "stylers": [
-                    {"color": "#ffffff"}
-                ]
+                "stylers": [{
+                    "color": "#ffffff"
+                }]
             }, {
                 "elementType": "labels.text",
-                "stylers": [
-                    {"saturation": 1},
-                    {"weight": 0.1},
-                    {"color": "#ffffff"},
-                    {"visibility": "off"}
+                "stylers": [{
+                        "saturation": 1
+                    },
+                    {
+                        "weight": 0.1
+                    },
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "visibility": "off"
+                    }
                 ]
             }
 
@@ -150,7 +158,7 @@
     // Mobile Menu
     //========================
     if ($('.mobileMenu').length > 0) {
-        $('.mobileMenu').on('click', function() {
+        $('.mobileMenu').on('click', function () {
             $(this).toggleClass('active');
             $('.mainNav > ul').slideToggle('slow');
         });
@@ -158,12 +166,14 @@
     //=======================================================
     // Menu Scroll
     //=======================================================
-    $('.mainNav ul li.scroll a').on('click', function() {
-        $('html, body').animate({scrollTop: $(this.hash).offset().top - 68}, 1000);
+    $('.mainNav ul li.scroll a').on('click', function () {
+        $('html, body').animate({
+            scrollTop: $(this.hash).offset().top - 68
+        }, 1000);
         return false;
     });
 
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         Scroll();
     });
 
@@ -175,24 +185,23 @@
         var rangeTop = 200;
         var rangeBottom = 500;
 
-        $('.mainNav').find('li.scroll > a').each(function() {
+        $('.mainNav').find('li.scroll > a').each(function () {
             var atr = $(this).attr('href');
 
-            if ($(atr).length > 0)
-            {
+            if ($(atr).length > 0) {
                 contentTop.push($($(this).attr('href')).offset().top);
                 contentBottom.push($($(this).attr('href')).offset().top + $($(this).attr('href')).height());
             }
 
         });
 
-        $.each(contentTop, function(i) {
+        $.each(contentTop, function (i) {
 
             if (winTop > contentTop[i] - rangeTop) {
                 $(".mainNav li").removeClass('active');
                 $('.mainNav li.scroll')
-                        .removeClass('active')
-                        .eq(i).addClass('active');
+                    .removeClass('active')
+                    .eq(i).addClass('active');
             }
         });
 
@@ -213,128 +222,109 @@
     //===================================
     // Fixed Header
     //===================================
-    $(window).on('scroll', function() {
-        if ($(window).scrollTop() > 40)
-        {
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 40) {
             $("header").addClass('fixedHeader animated fadeInUp');
-        }
-        else
-        {
+        } else {
             $("header").removeClass('fixedHeader animated fadeInUp');
         }
     });
     //========================
     // Contact Submit
     //========================
-    if ($("#booking").length > 0)
-    {
-        $("#booking").on('submit', function(e) {
+    if ($("#booking").length > 0) {
+        $("#booking").on('submit', function (e) {
             e.preventDefault();
             $("#con_submit").html('Processsing...');
 
             var allData = $(this).serialize();
 
             var required = 0;
-            $(".required", this).each(function() {
-                if ($(this).val() == '')
-                {
+            $(".required", this).each(function () {
+                if ($(this).val() == '') {
                     $(this).addClass('reqError');
                     required += 1;
-                }
-                else
-                {
-                    if ($(this).hasClass('reqError'))
-                    {
+                } else {
+                    if ($(this).hasClass('reqError')) {
                         $(this).removeClass('reqError');
-                        if (required > 0)
-                        {
+                        if (required > 0) {
                             required -= 1;
                         }
                     }
                 }
             });
-            if (required === 0)
-            {
-                if ($('#a').is(':checked'))
-                {
+            if (required === 0) {
+                if ($('#a').is(':checked')) {
                     $('.cheackbox').removeClass('agreeReq');
                     $.ajax({
                         type: "POST",
                         url: 'php/mail.php',
-                        data: {allData: allData},
-                        success: function(data)
-                        {
+                        data: {
+                            allData: allData
+                        },
+                        success: function (data) {
                             $("#con_submit").html('<i>Done!</i><span></span>');
                             $("#booking input").val('');
                             $(".contactSuccess").fadeIn('slow');
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $(".contactSuccess").fadeOut('slow');
                             }, 2500);
                         }
                     });
-                }
-                else
-                {
+                } else {
                     $('.cheackbox').addClass('agreeReq');
                     $("#con_submit").html('<i>Failed!</i> <span></span>');
                 }
-            }
-            else
-            {
+            } else {
                 $("#con_submit").html('<i>Failed!</i> <span></span>');
             }
 
         });
 
-        $(".required").on('keyup', function() {
+        $(".required").on('keyup', function () {
             $(this).removeClass('reqError');
         });
     }
 
 
-    if ($("#subscriptionsforms").length > 0)
-    {
-        $("#subscriptionsforms").on('submit', function(e) {
+    if ($("#subscriptionsforms").length > 0) {
+        $("#subscriptionsforms").on('submit', function (e) {
             e.preventDefault();
             var sub_email = $("#sub_email").val();
             $("#sub_submit").html('Processing...');
-            if (sub_email == '')
-            {
+            if (sub_email == '') {
                 $("#sub_email").addClass('reqError');
                 $("#sub_submit").html('Failed!');
-            }
-            else
-            {
+            } else {
                 $("#sub_email").removeClass('reqError');
                 $.ajax({
                     type: "POST",
                     url: "php/subscription.php",
-                    data: {sub_email: sub_email},
-                    success: function(data)
-                    {
+                    data: {
+                        sub_email: sub_email
+                    },
+                    success: function (data) {
                         $("#subscriptionsforms input").val('');
                         $("#sub_submit").html('Done!');
                         $(".subscriptionSuccess").fadeIn('slow');
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".subscriptionSuccess").fadeOut('slow');
                         }, 2500);
                     }
                 });
             }
         });
-        $("#sub_email").on('keyup', function() {
+        $("#sub_email").on('keyup', function () {
             $(this).removeClass('reqError');
         });
     }
-    $(document).mouseup(function(e) {
+    $(document).mouseup(function (e) {
         var container = $(".closers");
 
-        if (!container.is(e.target) && container.has(e.target).length === 0)
-        {
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
             $(".subscriptionSuccess").fadeOut('slow');
         }
-        if (!container.is(e.target) && container.has(e.target).length === 0)
-        {
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
             $(".contactSuccess").fadeOut('slow');
         }
     });
@@ -346,25 +336,24 @@
     //========================
     // Back To Top
     //========================
-    $(window).on('scroll', function() {
-        if ($(window).scrollTop() > $(window).height())
-        {
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > $(window).height()) {
             $("#backToTop").addClass('showit');
-        }
-        else
-        {
+        } else {
             $("#backToTop").removeClass('showit');
         }
 
     });
-    $("body, html").on("click", "#backToTop", function(e) {
+    $("body, html").on("click", "#backToTop", function (e) {
         e.preventDefault();
-        $('html, body').animate({scrollTop: 0}, 800);
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
     });
     //========================
     // Loader 
     //========================
-    $(window).load(function() {
+    $(window).load(function () {
         if ($('.preloader').length > 0) {
             $('.preloader').delay(800).fadeOut('slow');
         }
@@ -374,10 +363,15 @@
     //========================
     $(".banner").vegas({
         transitionDuration: 4000,
-        slides: [
-            {src: "images/banner.jpg"},
-            {src: "images/banner2.jpg"},
-            {src: "images/banner3.jpg"}
+        slides: [{
+                src: "images/banner.jpg"
+            },
+            {
+                src: "images/banner2.jpg"
+            },
+            {
+                src: "images/banner3.jpg"
+            }
         ],
         transition: 'fade'
     });
