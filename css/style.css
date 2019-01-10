@@ -436,7 +436,7 @@
 
 .contTopinfo h1 {
     color: #288dff;
-    font-size: 150px;
+    font-size: 130px;
     position: relative;
     padding-left: 30px;
     letter-spacing: -10px;
@@ -826,6 +826,10 @@
 
 .socialfooter a.goo:hover {
     background: #EA3032;
+}
+
+.socialfooter a.wha:hover {
+    background: green;
 }
 
 .socialfooter a.link:hover {
